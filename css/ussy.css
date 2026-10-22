@@ -1,10 +1,13 @@
 
-@@font-face {
+@font-face {
     font-family: "Ussy Shin Go";
     src: url("../fonts/AOTFShinGoProRegular.woff2") format("woff2");
     font-weight: 400;
     font-style: normal;
     font-display: swap;
+	ascent-override: 88%;
+	descent-override: 12%;
+	line-gap-override: 20%;
 }
 
 @font-face {
@@ -13,6 +16,9 @@
     font-weight: 700;
     font-style: normal;
     font-display: swap;
+	ascent-override: 88%;
+	descent-override: 12%;
+	line-gap-override: 20%;
 }
 
 @font-face {
@@ -133,7 +139,7 @@ body {
 	margin: 0;
 	min-width: 320px;
 	min-height: 100vh;
-	padding-bottom: 110px;
+	padding-bottom: 24px;
 	color: var(--ink);
 	font: 400 16px/1.55 var(--font);
 	background-color: var(--bg);
@@ -145,6 +151,10 @@ body {
 		24px 24px,
 		auto,
 		auto;
+}
+
+body.thumb_layout {
+	padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px));
 }
 
 h1,
