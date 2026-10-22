@@ -1,45 +1,6 @@
 'use strict';
 
-// Ussy v1: the club's movie night page. Sections, in the order they appear
-// (search for "// K." to jump to one):
-//
-//   A. The club: members, words, and the comfort questions
-//   B. Small helpers
-//   C. What this browser remembers
-//   D. The club's data: kept on this device, or live for everyone through Firebase
-//   E. TMDB and AniList
-//   F. Title info: one shape for TMDB, AniList and custom titles
-//   G. Comfort rules (Safe for Mayseph)
-//   H. Tonight's rules: who's here decides what suits tonight
-//   I. One spring for every panel
-//   J. The island: clocks, and who's watching
-//   K. Dialogs
-//   L. Master List: the endless carousel
-//   M. Dragging the posters, and taking one off the list
-//   N. The spotlight
-//   O. Adding titles: search, results and custom titles
-//   P. Votes and the tie-break
-//   Q. Details
-//   R. The trailer player
-//   S. Safe for Mayseph
-//   T. Spin the wheel
-//   U. Episode fit
-//   V. Show tracker
-//   W. Watch history
-//   X. Settings, the welcome, and connecting the club
-//   Y. Music
-//   Z. Drawing everything, events, and start
-//
-// Names: camelCase for functions and variables, PascalCase for classes,
-// SCREAMING_SNAKE_CASE for fixed settings, snake_case for CSS classes and
-// stored fields. data-* attributes stay kebab-case, because the browser turns
-// data-ballot-vote into dataset.ballotVote for the script.
-
-
-
-// A. The club: members, words, and the comfort questions
-
-const APP_VERSION = 'Ussy v1.1';
+const APP_VERSION = 'Ussy v1.4';
 
 // Zones are IANA names, never fixed offsets: Amsterdam and London switch for daylight saving.
 const MEMBERS = [
@@ -2209,8 +2170,8 @@ function renderShelf(force) {
 	const all = listedTitles();
 	const list = all.filter(t => matchesSearch(t, query));
 	const leader = leaderKey();
-	const looping = list.length >= 4; // fewer than four would just repeat the same posters
-	const copies = looping ? LOOP_COPIES : 1;
+	const looping = list.length >= 2;
+	const copies = looping ? Math.max(LOOP_COPIES, 2 * Math.ceil(24 / list.length / 2) + 1) : 1;
 	const middle = Math.floor(copies / 2);
 	let html = '';
 	for (let c = 0; c < copies; c++) html += list.map(t => cardHtml(t, leader, c !== middle)).join('');
